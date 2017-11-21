@@ -18,7 +18,7 @@ def args_parse():
     parser = argparse.ArgumentParser(prog='docker_compose_bundler',
                                      formatter_class=argparse.RawDescriptionHelpFormatter,
                                      description=textwrap.dedent(
-                                         'Create a backup that can then be used with docker load.\ndocker_compose_bundler -o bundle.tar')
+                                         'bundle docker images to tarball base on docker-compose.yml that can then be used with docker load.\ndocker_compose_bundler -o bundle.tar')
                                      )
     parser.add_argument('--version', action='version',
                         version='%(prog)s {0}'.format(__version__))
