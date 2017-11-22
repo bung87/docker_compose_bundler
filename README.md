@@ -9,4 +9,12 @@ install [pip](https://pip.pypa.io/en/latest/installing/) first if python version
 
 ## 如何使用？  
 
-`docker_compose_bundler -o bundle.tar` for more `docker_compose_bundler -h`
+`docker_compose_bundler -o bundle.tar` 
+
+output as .xz format:  
+
+`docker_compose_bundler -o  bundle.tar.xz` or  
+
+`docker_compose_bundler -xz -o  bundle.tar`  
+
+for more `docker_compose_bundler -h`

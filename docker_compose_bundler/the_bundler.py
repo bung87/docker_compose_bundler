@@ -30,7 +30,7 @@ def args_parse():
                         type=str, help='Specify an alternate working directory\n(default: the path of the Compose file)')
     parser.add_argument('-o , --output', dest="output", default="",
                         metavar="string", action='store', type=str, help='Write to a file .tar')
-
+    parser.add_argument('-xz', dest="xz", default=False,action='store_true', help='Write to a xz(docker prerequisites) compressed file .tar.xz ')
     args = parser.parse_args()
 
 
@@ -38,7 +38,15 @@ def command():
     compose_file_path = Path(args.file)
     directory = Path(args.directory)
     name = args.name
+    use_xz = args.xz
     output = Path(args.output)
+    if output.suffix == "":
+        output.with_suffix(".tar")
+    elif output.suffix == ".tar":
+        if use_xz:
+            output.with_suffix(".xz")
+    elif output.suffix == '.xz':
+        use_xz = True
     os.chdir(str(directory))
     images = []
     with open(str(compose_file_path)) as f:
@@ -59,9 +67,14 @@ def command():
                 images.append(service_v["image"])
             else:
                 pass
-
-    bundle_command = "docker save -o {output} {images}".format(
-        output=str(output), images=" ".join(images))
+    images_str = " ".join(images)
+    if use_xz:
+        bundle_command = "docker save {images} | xz -zv --threads=0 > {output}".format(
+        output=str(output), images=images_str)
+    else:
+        bundle_command = "docker save -o {output} {images}".format(
+        output=str(output), images=images_str)
+    
     code,r = commands.getstatusoutput(bundle_command)
     if code != 0:
         raise Exception(r)
