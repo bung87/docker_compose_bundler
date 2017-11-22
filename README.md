@@ -13,6 +13,8 @@ install [pip](https://pip.pypa.io/en/latest/installing/) first if python version
 
 output as .xz format:  
 
+eg. 1,267.8 MiB tarball could reduce size to 247.2 MiB  but consuming more compressing time.
+
 `docker_compose_bundler -o  bundle.tar.xz` or  
 
 `docker_compose_bundler -xz -o  bundle.tar`  
