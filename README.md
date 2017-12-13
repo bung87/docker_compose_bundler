@@ -20,3 +20,15 @@ eg. 1,267.8 MiB tarball could reduce size to 247.2 MiB  but consuming more compr
 `docker_compose_bundler -xz -o  bundle.tar`  
 
 for more `docker_compose_bundler -h`
+
+### upload to remote machine  
+
+scp bundle.tar.xz root@your.remote.ip.address:/root  
+
+### decompress bundle.tar.xz  
+
+xz -d bundle.tar.xz  
+
+### load images  
+
+docker load --input bundle.tar
