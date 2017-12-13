@@ -53,7 +53,7 @@ def command():
         # use safe_load instead load
         dataMap = yaml.safe_load(f)
         dirname = os.path.basename(os.getcwd())
-        prefix = dirname.replace("_", "") if name == "" else name
+        prefix = dirname.lower().replace("_", "") if name == "" else name
         service_image_name = partial("{0}_{1}".format, prefix)
         for service_k, service_v in dataMap["services"].iteritems():
             if service_v.has_key("build") and service_v.has_key("image"):
