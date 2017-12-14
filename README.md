@@ -23,16 +23,16 @@ for more `docker_compose_bundler -h`
 
 ### upload to remote machine  
 
-scp bundle.tar.xz root@your.remote.ip.address:/root  
+`scp bundle.tar.xz root@your.remote.ip.address:/root  `
 
 ### decompress bundle.tar.xz  
 
-xz -d bundle.tar.xz  
+`xz -d bundle.tar.xz`  
 
 ### load images  
 
-docker load --input bundle.tar  
+`docker load --input bundle.tar`  
 
 ### Notice
 
-service use build process needs specify the ```image``` tag,otherwise ```docker-compose up``` will rebuild the service base on project directory name even project related image already loaded (maybe has another name).
+service uses build process needs specify the ```image``` tag,otherwise ```docker-compose up``` will rebuild the service base on project directory name even project related image already loaded (maybe has another name).
