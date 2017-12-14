@@ -31,4 +31,8 @@ xz -d bundle.tar.xz
 
 ### load images  
 
-docker load --input bundle.tar
+docker load --input bundle.tar  
+
+### Notice
+
+service use build process needs specify the ```image``` tag,otherwise ```docker-compose up``` will rebuild the service base on project directory name even project related image already loaded (maybe has another name).
